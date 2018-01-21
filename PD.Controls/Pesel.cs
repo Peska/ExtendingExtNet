@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Web.UI;
 
-[assembly: WebResource("ExtendingExtNet.Scripts.Pesel.js", "text/javascript")]
+[assembly: WebResource("PD.Controls.Scripts.Pesel.js", "text/javascript")]
 
-namespace ExtendingExtNet
+namespace PD.Controls
 {
     public class Pesel : TextField
     {
@@ -49,7 +49,7 @@ namespace ExtendingExtNet
         {
             get
             {
-                string resource = "ExtendingExtNet.Scripts.Pesel.js";
+                string resource = "PD.Controls.Scripts.Pesel.js";
 
                 List<ResourceItem> baseList = base.Resources;
 
@@ -76,6 +76,14 @@ namespace ExtendingExtNet
             }
 
             return base.LoadPostData(postDataKey, postCollection);
+        }
+
+        protected override void OnInit(EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(this.MaskRe))
+                this.MaskRe = "[0-9]";
+
+            base.OnInit(e);
         }
     }
 }

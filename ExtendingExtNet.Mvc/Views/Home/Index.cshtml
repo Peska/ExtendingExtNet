@@ -1,0 +1,20 @@
+﻿@using Ext.Net;
+@using Ext.Net.MVC;
+@using PD.Controls;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@(Html.X().ResourceManager())
+
+@using (Html.BeginForm())
+{
+
+    @Html.X().Viewport().Items(items => items.Add(new Pesel()))
+
+    @(Html.X().TextField().ID("txtPesel"))
+    @(Html.X().Button().Text("Submit").DirectEvents(x => { x.Click.Url = Url.Action("Button_Click"); }))
+}
